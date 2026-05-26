@@ -175,9 +175,8 @@ function FeaturedCard({ project }: { project: Project }) {
   return (
     <motion.div
       ref={ref}
-      className="relative rounded-card overflow-hidden cursor-default flex flex-col md:flex-row md:items-stretch"
+      className="relative rounded-card overflow-hidden cursor-default flex flex-col md:flex-row md:items-stretch md:h-[320px]"
       style={{
-        minHeight: 300,
         border: `1px solid ${project.color}4d`,
         background: `linear-gradient(135deg, ${project.gradientFrom}, #1d2025)`,
         ...tiltStyle,
@@ -205,13 +204,13 @@ function FeaturedCard({ project }: { project: Project }) {
         </p>
         <h3 className="font-mono font-bold text-2xl md:text-3xl text-on-surface mt-1">{project.title}</h3>
         <p className="font-mono text-sm mt-1" style={{ color: project.color }}>{project.tagline}</p>
-        <p className="font-sans text-sm text-muted mt-4 leading-relaxed">{project.description}</p>
+        <p className="font-sans text-sm text-muted mt-3 leading-relaxed line-clamp-3 md:line-clamp-2">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mt-5">
+        <div className="flex flex-wrap gap-2 mt-4">
           {project.tech.map((t) => <TechPill key={t} name={t} />)}
         </div>
 
-        <div className="flex gap-3 mt-6">
+        <div className="flex gap-3 mt-4">
           {project.demo && (
             <a
               href={project.demo}
