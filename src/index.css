@@ -1,0 +1,81 @@
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import '@fontsource/dm-sans/400.css';
+@import '@fontsource/dm-sans/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #101319;
+  color: #e1e2ea;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  cursor: none;
+}
+
+/* Lenis smooth scroll */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #101319; }
+::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 2px; }
+
+/* Section spacing rhythm */
+section { padding-top: 96px; padding-bottom: 96px; }
+
+/* Utility: cyan text glow */
+.text-glow { text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+
+/* Blinking cursor */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* Scan-line overlay */
+/* Avatar placeholder pulse ring */
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1);    opacity: 0.35; }
+  50%       { transform: scale(1.05); opacity: 0.15; }
+}
+.avatar-ring { animation: pulse-ring 2.5s ease-in-out infinite; }
+
+/* Scroll indicator bounce */
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(8px);  }
+}
+.bounce-y { animation: bounce-y 1.6s ease-in-out infinite; }
+
+/* HireBadge rotation */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Decorative code block infinite scroll */
+@keyframes code-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.code-scroll { animation: code-scroll 20s linear infinite; }
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
