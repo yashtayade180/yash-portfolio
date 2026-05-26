@@ -15,17 +15,12 @@ import CustomCursor from './components/CustomCursor'
 import HireBadge from './components/HireBadge'
 import ScrollToTop from './components/ui/ScrollToTop'
 
-const VISITED_KEY = 'yt_visited'
-
 export default function App() {
-  const [loading, setLoading] = useState(() => !localStorage.getItem(VISITED_KEY))
+  const [loading, setLoading] = useState(true)
 
   useLenis()
 
-  const handleLoaderDone = () => {
-    localStorage.setItem(VISITED_KEY, '1')
-    setLoading(false)
-  }
+  const handleLoaderDone = () => setLoading(false)
 
   return (
     <>
