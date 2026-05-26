@@ -175,9 +175,9 @@ function FeaturedCard({ project }: { project: Project }) {
   return (
     <motion.div
       ref={ref}
-      className="relative rounded-card overflow-hidden cursor-default"
+      className="relative rounded-card overflow-hidden cursor-default flex flex-col md:flex-row md:items-stretch"
       style={{
-        height: 340,
+        minHeight: 300,
         border: `1px solid ${project.color}4d`,
         background: `linear-gradient(135deg, ${project.gradientFrom}, #1d2025)`,
         ...tiltStyle,
@@ -199,13 +199,13 @@ function FeaturedCard({ project }: { project: Project }) {
       />
 
       {/* Left: project info */}
-      <div className="absolute inset-0 flex flex-col justify-center p-8 md:pr-[47%]">
+      <div className="relative flex flex-col justify-center p-6 md:p-8 md:w-[56%]">
         <p className="font-mono text-[10px] tracking-widest uppercase mb-2" style={{ color: `${project.color}b3` }}>
           FEATURED PROJECT
         </p>
-        <h3 className="font-mono font-bold text-3xl text-on-surface mt-1">{project.title}</h3>
+        <h3 className="font-mono font-bold text-2xl md:text-3xl text-on-surface mt-1">{project.title}</h3>
         <p className="font-mono text-sm mt-1" style={{ color: project.color }}>{project.tagline}</p>
-        <p className="font-sans text-sm text-muted mt-4 leading-relaxed max-w-md">{project.description}</p>
+        <p className="font-sans text-sm text-muted mt-4 leading-relaxed">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mt-5">
           {project.tech.map((t) => <TechPill key={t} name={t} />)}
@@ -215,6 +215,8 @@ function FeaturedCard({ project }: { project: Project }) {
           {project.demo && (
             <a
               href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-primary text-bg-low font-mono text-xs font-bold px-4 py-2 rounded-btn hover:shadow-glow-cyan hover:scale-[1.02] transition-all duration-200"
             >
               VIEW LIVE <ExternalLink size={12} />
@@ -229,10 +231,10 @@ function FeaturedCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* Right: scrolling code block */}
+      {/* Right: scrolling code block — desktop only */}
       <div
-        className="absolute top-0 right-0 h-full hidden md:block rounded-l-card overflow-hidden bg-bg-low"
-        style={{ width: '44%', borderLeft: `1px solid ${project.color}26` }}
+        className="hidden md:block md:w-[44%] rounded-l-card overflow-hidden bg-bg-low self-stretch"
+        style={{ borderLeft: `1px solid ${project.color}26` }}
       >
         <div className="p-5 font-mono text-xs h-full">
           <CodeDecoration />
